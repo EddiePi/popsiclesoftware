@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product One — MyBrand</title>
+  <meta name="description" content="Learn about Product One by MyBrand." />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="../index.html">My<span>Brand</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="product1.html">Product 1</a></li>
+      <li><a href="product2.html">Product 2</a></li>
+      <li><a href="privacy.html">Privacy</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- Product Header -->
+    <header class="product-header">
+      <div class="product-header-inner">
+        <p class="eyebrow fade-up">Our Products</p>
+        <h1 class="fade-up fade-up-d1">Product One</h1>
+        <p class="fade-up fade-up-d2">
+          A concise, compelling tagline that captures what Product One does and
+          who it's for. One or two sentences max.
+        </p>
+      </div>
+    </header>
+
+    <!-- Overview -->
+    <section class="product-content">
+      <div class="product-content-inner">
+
+        <p class="section-label">Overview</p>
+        <h2 class="section-title">What is Product One?</h2>
+        <p class="section-body">
+          Write a paragraph here explaining what Product One is, the problem it solves,
+          and who benefits from it most. Keep this clear and jargon-free — your customers
+          should immediately understand the value.
+        </p>
+
+        <hr class="divider" />
+
+        <!-- Feature highlights -->
+        <p class="section-label">Features</p>
+        <h2 class="section-title">Why choose Product One?</h2>
+
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="icon">✨</div>
+            <h4>Feature Title</h4>
+            <p>Describe this feature in 1–2 sentences. Focus on the benefit to the user, not the technical detail.</p>
+          </div>
+          <div class="feature-item">
+            <div class="icon">🔒</div>
+            <h4>Feature Title</h4>
+            <p>Describe this feature in 1–2 sentences. Focus on the benefit to the user, not the technical detail.</p>
+          </div>
+          <div class="feature-item">
+            <div class="icon">📈</div>
+            <h4>Feature Title</h4>
+            <p>Describe this feature in 1–2 sentences. Focus on the benefit to the user, not the technical detail.</p>
+          </div>
+          <div class="feature-item">
+            <div class="icon">🎯</div>
+            <h4>Feature Title</h4>
+            <p>Describe this feature in 1–2 sentences. Focus on the benefit to the user, not the technical detail.</p>
+          </div>
+        </div>
+
+        <hr class="divider" />
+
+        <!-- CTA -->
+        <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+          <a class="btn" href="#">Get Started</a>
+          <a class="btn btn-outline" href="product2.html">See Product Two →</a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>
+      &copy; <span id="yr"></span> MyBrand. All rights reserved. &nbsp;|&nbsp;
+      <a href="privacy.html">Privacy Policy</a>
+    </p>
+  </footer>
+
+  <script src="../js/nav.js"></script>
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>

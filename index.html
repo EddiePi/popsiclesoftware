@@ -1,33 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Website</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MyBrand — Home</title>
+  <meta name="description" content="Welcome to MyBrand. Discover our products built to make your life easier." />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-    <nav>
-        <div class="container">
-            <strong>My Portfolio</strong>
-        </div>
-    </nav>
 
-    <header>
-        <div class="container">
-            <h1>Welcome to My New Website</h1>
-            <p>Hosted for free on GitHub Pages.</p>
-            <a href="#contact" class="btn">Get in Touch</a>
-        </div>
-    </header>
+  <nav>
+    <a class="nav-logo" href="index.html">My<span>Brand</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="pages/product1.html">Product 1</a></li>
+      <li><a href="pages/product2.html">Product 2</a></li>
+      <li><a href="pages/privacy.html">Privacy</a></li>
+    </ul>
+  </nav>
 
-    <section id="about" class="container">
-        <h2>About This Project</h2>
-        <p>This is a prototype website demonstrating how to use GitHub as a hosting platform. It uses HTML and CSS to create a clean, responsive layout.</p>
+  <main>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <p class="hero-eyebrow fade-up">Welcome to MyBrand</p>
+        <h1 class="fade-up fade-up-d1">Crafted for the&nbsp;way&nbsp;you&nbsp;work</h1>
+        <p class="fade-up fade-up-d2">
+          We build thoughtful products that solve real problems — elegant tools
+          designed with care for the people who use them every day.
+        </p>
+        <div class="fade-up fade-up-d3">
+          <a class="btn" href="pages/product1.html">Explore Products</a>
+          <a class="btn btn-outline" href="pages/privacy.html">Our Privacy Promise</a>
+        </div>
+      </div>
     </section>
 
-    <footer id="contact">
-        <p>&copy; 2026 Built with Gemini & GitHub</p>
-    </footer>
+    <!-- Products section -->
+    <section class="section">
+      <div class="section-inner">
+        <p class="section-label">Our Products</p>
+        <h2 class="section-title">Everything you need,<br/>nothing you don't</h2>
+        <p class="section-body">
+          Each product is designed from the ground up to be fast, reliable, and a joy to use.
+          Pick the one that fits your workflow.
+        </p>
+
+        <div class="product-grid">
+          <a class="product-card" href="pages/product1.html">
+            <div class="product-card-icon">🚀</div>
+            <h3>Product One</h3>
+            <p>
+              A short, compelling description of Product One — what it does and why it matters
+              to your customers.
+            </p>
+            <span class="card-link">Learn more →</span>
+          </a>
+
+          <a class="product-card" href="pages/product2.html">
+            <div class="product-card-icon">⚡</div>
+            <h3>Product Two</h3>
+            <p>
+              A short, compelling description of Product Two — highlight the key benefit
+              that sets it apart.
+            </p>
+            <span class="card-link">Learn more →</span>
+          </a>
+
+          <!-- To add more products, copy a .product-card block here and link to pages/productN.html -->
+        </div>
+      </div>
+    </section>
+
+    <!-- About strip -->
+    <section class="section" style="background: var(--ink); color: var(--cream); padding: 4rem 2rem;">
+      <div class="section-inner" style="display:flex; flex-wrap:wrap; gap:3rem; align-items:center;">
+        <div style="flex:1; min-width:260px;">
+          <p class="section-label">About Us</p>
+          <h2 class="section-title" style="color:var(--cream);">Built by people<br/>who care</h2>
+        </div>
+        <div style="flex:2; min-width:260px;">
+          <p style="color:#b0adc8; line-height:1.8; font-size:1.05rem;">
+            We're a small team obsessed with quality. Every decision — from design to the last
+            line of code — is made with our users in mind. We believe software should be
+            empowering, not overwhelming.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>
+      &copy; <span id="yr"></span> MyBrand. All rights reserved. &nbsp;|&nbsp;
+      <a href="pages/privacy.html">Privacy Policy</a>
+    </p>
+  </footer>
+
+  <script src="js/nav.js"></script>
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
 </body>
 </html>
