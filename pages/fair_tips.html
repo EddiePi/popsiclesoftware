@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fair Tips — PopsicleSoftware</title>
+  <meta name="description" content="Fair Tips: automatically detect your sales tax rate by location and calculate tips on the pre-tax bill. Available on the App Store." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* ── FAIR TIPS PAGE-SPECIFIC STYLES ── */
+
+    /* Hero enhancement */
+    .ft-hero {
+      background: var(--ink);
+      padding: 5rem 2rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ft-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 20%, #2e2060 0%, var(--ink) 65%);
+      opacity: .85;
+    }
+
+    .ft-hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .ft-hero-eyebrow {
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .ft-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      font-weight: 900;
+      color: var(--cream);
+      line-height: 1.08;
+      margin-bottom: 1.2rem;
+    }
+
+    .ft-hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .ft-hero-sub {
+      color: #b0adc8;
+      font-size: 1.1rem;
+      line-height: 1.75;
+      margin-bottom: 2.4rem;
+      font-weight: 300;
+    }
+
+    .ft-hero-ctas {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 4rem;
+    }
+
+    /* App Store badge style */
+    .btn-appstore {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .75rem 1.8rem;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: .95rem;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background .2s, transform .15s;
+    }
+
+    .btn-appstore:hover { background: #e8e1d4; transform: translateY(-2px); }
+
+    .btn-appstore svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    /* Hero screenshots row */
+    .ft-hero-screens {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 1.2rem;
+      padding: 0 1rem;
+    }
+
+    .ft-phone {
+      width: 160px;
+      flex-shrink: 0;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,.5);
+      border: 2px solid rgba(255,255,255,.08);
+      transition: transform .3s;
+    }
+
+    .ft-phone:hover { transform: translateY(-8px); }
+
+    .ft-phone.center {
+      width: 190px;
+      transform: translateY(-24px);
+      box-shadow: 0 32px 80px rgba(0,0,0,.6);
+    }
+
+    .ft-phone.center:hover { transform: translateY(-32px); }
+
+    .ft-phone img {
+      width: 100%;
+      display: block;
+    }
+
+    /* Gradient fade at bottom of hero */
+    .ft-hero-fade {
+      height: 80px;
+      background: linear-gradient(to bottom, transparent, var(--cream));
+      margin-top: -2px;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .ft-how {
+      padding: 5rem 2rem;
+      background: var(--cream);
+    }
+
+    .ft-how-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .ft-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+      counter-reset: steps;
+    }
+
+    .ft-step {
+      position: relative;
+      padding: 2rem 1.6rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      counter-increment: steps;
+    }
+
+    .ft-step::before {
+      content: counter(steps, decimal-leading-zero);
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .ft-step h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--ink);
+      margin-bottom: .5rem;
+    }
+
+    .ft-step p {
+      font-size: .92rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── FEATURE SHOWCASE (alternating) ── */
+    .ft-showcase {
+      padding: 5rem 2rem;
+    }
+
+    .ft-showcase-inner { max-width: 1000px; margin: 0 auto; }
+
+    .ft-showcase-row {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      margin-bottom: 6rem;
+    }
+
+    .ft-showcase-row:last-child { margin-bottom: 0; }
+
+    .ft-showcase-row.reverse { flex-direction: row-reverse; }
+
+    .ft-showcase-text { flex: 1; min-width: 240px; }
+
+    .ft-showcase-text .section-label { margin-bottom: .5rem; }
+
+    .ft-showcase-text h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .ft-showcase-text p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    .ft-showcase-img {
+      flex-shrink: 0;
+      width: 220px;
+    }
+
+    .ft-showcase-img img {
+      width: 100%;
+      border-radius: 18px;
+      box-shadow: 0 16px 48px rgba(0,0,0,.15);
+      border: 1px solid var(--border);
+      display: block;
+    }
+
+    /* ── DARK STRIP CTA ── */
+    .ft-cta-strip {
+      background: var(--ink);
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .ft-cta-strip h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      color: var(--cream);
+      margin-bottom: 1rem;
+    }
+
+    .ft-cta-strip p {
+      color: #b0adc8;
+      font-size: 1.05rem;
+      margin-bottom: 2.2rem;
+      font-weight: 300;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .ft-showcase-row,
+      .ft-showcase-row.reverse {
+        flex-direction: column;
+        gap: 2rem;
+        margin-bottom: 4rem;
+      }
+
+      .ft-showcase-img { width: 180px; margin: 0 auto; }
+
+      .ft-phone { width: 120px; }
+      .ft-phone.center { width: 145px; }
+
+      .ft-hero-ctas { flex-direction: column; align-items: center; }
+    }
+
+    @media (max-width: 480px) {
+      .ft-phone { display: none; }
+      .ft-phone.center { display: block; width: 200px; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="../index.html">Popsicle<span>Software</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="fair_tips.html" class="active">Fair Tips</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- ── HERO ── -->
+    <section class="ft-hero">
+      <div class="ft-hero-inner">
+        <h1 class="fade-up">Tip on what's <em>fair</em>,<br/>not what's inflated.</h1>
+        <p class="ft-hero-sub fade-up fade-up-d2">
+          Fair Tips detects your local sales tax rate automatically — so you
+          always tip on the pre-tax total, the way it was meant to be.
+        </p>
+        <div class="ft-hero-ctas fade-up fade-up-d3">
+          <a class="btn-appstore" href="https://apps.apple.com/us/app/fair-tips/id6502357717">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+            </svg>
+            Download on the App Store
+          </a>
+        </div>
+      </div>
+
+      <!-- Screenshots row -->
+      <div class="ft-hero-screens fade-up fade-up-d3">
+        <div class="ft-phone center">
+          <img src="../assets/fair_tips/screenshot-full.png" alt="Fair Tips full app view" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Gradient fade from hero into content -->
+    <div class="ft-hero-fade"></div>
+
+    <!-- ── HOW IT WORKS ── -->
+    <section class="ft-how">
+      <div class="ft-how-inner">
+        <p class="section-label">How It Works</p>
+        <h2 class="section-title">Three steps to a fair tip</h2>
+        <p class="section-body">
+          No spreadsheets. No mental math. Fair Tips handles the tax so you can
+          focus on enjoying your meal.
+        </p>
+
+        <div class="ft-steps">
+          <div class="ft-step">
+            <h4>Enter your bill</h4>
+            <p>Type in the total shown on your receipt — including tax for now. Fair Tips will separate it out.</p>
+          </div>
+          <div class="ft-step">
+            <h4>Detect your tax rate</h4>
+            <p>The app reads your GPS location or lets you type a zip code to look up the exact local sales tax rate.</p>
+          </div>
+          <div class="ft-step">
+            <h4>Pick your tip %</h4>
+            <p>Choose 15%, 18%, 20%, or a custom amount — always applied to the pre-tax subtotal only.</p>
+          </div>
+          <div class="ft-step">
+            <h4>See the breakdown</h4>
+            <p>A clean summary shows subtotal, tax, tip, and the final total — transparent, accurate, and fair.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FEATURE SHOWCASE ── -->
+    <section class="ft-showcase" style="background: var(--card-bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+      <div class="ft-showcase-inner">
+
+        <div style="text-align:center; max-width:600px; margin: 0 auto 5rem;">
+          <p class="section-label">Features</p>
+          <h2 class="section-title">Built for accuracy,<br/>designed for simplicity</h2>
+        </div>
+
+        <!-- Feature 1 -->
+        <div class="ft-showcase-row">
+          <div class="ft-showcase-img">
+            <img src="../assets/fair_tips/screenshot-price-input.png" alt="Entering the bill amount" />
+          </div>
+          <div class="ft-showcase-text">
+            <p class="section-label">Feature 01</p>
+            <h3>Enter any bill amount in seconds</h3>
+            <p>
+              A clean, distraction-free input makes entering your bill amount fast and
+              error-free. Large numerals, a friendly keypad, and immediate feedback —
+              no hunting through menus.
+            </p>
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="ft-showcase-row reverse">
+          <div class="ft-showcase-img">
+            <img src="../assets/fair_tips/screenshot-tax.png" alt="Automatic tax rate detection" />
+          </div>
+          <div class="ft-showcase-text">
+            <p class="section-label">Feature 02</p>
+            <h3>Automatic local sales tax detection</h3>
+            <p>
+              Fair Tips uses your device's location to pull the exact combined sales tax
+              rate for your city, county, and state. No database to maintain — always
+              current. Prefer privacy? Just type your zip code instead.
+            </p>
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="ft-showcase-row">
+          <div class="ft-showcase-img">
+            <img src="../assets/fair_tips/screenshot-summary.png" alt="Clean tip summary" />
+          </div>
+          <div class="ft-showcase-text">
+            <p class="section-label">Feature 03</p>
+            <h3>Crystal-clear tip summary</h3>
+            <p>
+              See every line item at a glance: pre-tax subtotal, the sales tax amount,
+              your chosen tip, and the final total to pay. Share the breakdown with
+              your tablemates or screenshot it for your records.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── FEATURES GRID ── -->
+    <section class="product-content">
+      <div class="product-content-inner">
+
+        <p class="section-label">Why Fair Tips</p>
+        <h2 class="section-title">Thoughtful by design</h2>
+
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="icon">📍</div>
+            <h4>Location-aware</h4>
+            <p>Instantly fetches the combined sales tax rate — state, county, and city — for wherever you're dining.</p>
+          </div>
+          <div class="feature-item">
+            <div class="icon">🔢</div>
+            <h4>Pre-tax calculation</h4>
+            <p>Tips are always computed on the pre-tax subtotal, so you're tipping on what you actually ordered.</p>
+          </div>
+          <div class="feature-item">
+            <div class="icon">🔒</div>
+            <h4>Privacy first</h4>
+            <p>Location data is used only in the moment to look up your tax rate. Nothing is stored or shared.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── FINAL CTA STRIP ── -->
+    <section class="ft-cta-strip">
+      <h2 class="fade-up">Stop tipping on your tax.</h2>
+      <p class="fade-up fade-up-d1">Fair Tips is free to download. Start calculating honest tips today.</p>
+      <a class="btn-appstore fade-up fade-up-d2" href="https://apps.apple.com/us/app/fair-tips/id6502357717">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:20px;height:20px;">
+          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+        </svg>
+        Download on the App Store
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>
+      &copy; <span id="yr"></span> PopsicleSoftware. All rights reserved.
+    </p>
+  </footer>
+
+  <script src="../js/nav.js"></script>
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>
