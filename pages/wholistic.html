@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wholistic — PopsicleSoftware</title>
+  <meta name="description" content="Wholistic: create checklists from templates for recurring events, set up alerts, and view everything in a calendar. Available on the App Store." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* ── WHOLISTIC PAGE-SPECIFIC STYLES ── */
+
+    --wh-accent: #3ab87a;
+
+    /* Hero */
+    .wh-hero {
+      background: var(--ink);
+      padding: 5rem 2rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wh-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 20%, #0e3d2a 0%, var(--ink) 65%);
+      opacity: .9;
+    }
+
+    .wh-hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .wh-hero-eyebrow {
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: #3ab87a;
+      margin-bottom: 1rem;
+    }
+
+    .wh-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      font-weight: 900;
+      color: var(--cream);
+      line-height: 1.08;
+      margin-bottom: 1.2rem;
+    }
+
+    .wh-hero h1 em {
+      font-style: italic;
+      color: #3ab87a;
+    }
+
+    .wh-hero-sub {
+      color: #a0c8b0;
+      font-size: 1.1rem;
+      line-height: 1.75;
+      margin-bottom: 2.4rem;
+      font-weight: 300;
+    }
+
+    .wh-hero-ctas {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 4rem;
+    }
+
+    /* App Store badge */
+    .btn-appstore {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .75rem 1.8rem;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: .95rem;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background .2s, transform .15s;
+    }
+
+    .btn-appstore:hover { background: #e8e1d4; transform: translateY(-2px); }
+
+    .btn-appstore svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    /* Hero screenshots row */
+    .wh-hero-screens {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 1.2rem;
+      padding: 0 1rem;
+    }
+
+    .wh-phone {
+      width: 150px;
+      flex-shrink: 0;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,.5);
+      border: 2px solid rgba(255,255,255,.08);
+      transition: transform .3s;
+    }
+
+    .wh-phone:hover { transform: translateY(-8px); }
+
+    .wh-phone.center {
+      width: 180px;
+      transform: translateY(-24px);
+      box-shadow: 0 32px 80px rgba(0,0,0,.6);
+    }
+
+    .wh-phone.center:hover { transform: translateY(-32px); }
+
+    .wh-phone img {
+      width: 100%;
+      display: block;
+    }
+
+    /* Gradient fade hero → content */
+    .wh-hero-fade {
+      height: 80px;
+      background: linear-gradient(to bottom, transparent, var(--cream));
+      margin-top: -2px;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .wh-how {
+      padding: 5rem 2rem;
+      background: var(--cream);
+    }
+
+    .wh-how-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .wh-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+      counter-reset: steps;
+    }
+
+    .wh-step {
+      position: relative;
+      padding: 2rem 1.6rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      counter-increment: steps;
+    }
+
+    .wh-step::before {
+      content: counter(steps, decimal-leading-zero);
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .wh-step h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--ink);
+      margin-bottom: .5rem;
+    }
+
+    .wh-step p {
+      font-size: .92rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── FEATURE SHOWCASE ── */
+    .wh-showcase {
+      padding: 5rem 2rem;
+    }
+
+    .wh-showcase-inner { max-width: 1000px; margin: 0 auto; }
+
+    .wh-showcase-row {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      margin-bottom: 6rem;
+    }
+
+    .wh-showcase-row:last-child { margin-bottom: 0; }
+
+    .wh-showcase-row.reverse { flex-direction: row-reverse; }
+
+    .wh-showcase-text { flex: 1; min-width: 240px; }
+
+    .wh-showcase-text .section-label { margin-bottom: .5rem; }
+
+    .wh-showcase-text h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .wh-showcase-text p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    .wh-showcase-img {
+      flex-shrink: 0;
+      width: 220px;
+    }
+
+    .wh-showcase-img img {
+      width: 100%;
+      border-radius: 18px;
+      box-shadow: 0 16px 48px rgba(0,0,0,.15);
+      border: 1px solid var(--border);
+      display: block;
+    }
+
+    /* ── DARK STRIP CTA ── */
+    .wh-cta-strip {
+      background: var(--ink);
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .wh-cta-strip h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      color: var(--cream);
+      margin-bottom: 1rem;
+    }
+
+    .wh-cta-strip p {
+      color: #a0c8b0;
+      font-size: 1.05rem;
+      margin-bottom: 2.2rem;
+      font-weight: 300;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .wh-showcase-row,
+      .wh-showcase-row.reverse {
+        flex-direction: column;
+        gap: 2rem;
+        margin-bottom: 4rem;
+      }
+
+      .wh-showcase-img { width: 180px; margin: 0 auto; }
+
+      .wh-phone { width: 110px; }
+      .wh-phone.center { width: 140px; }
+
+      .wh-hero-ctas { flex-direction: column; align-items: center; }
+    }
+
+    @media (max-width: 480px) {
+      .wh-phone { display: none; }
+      .wh-phone.center { display: block; width: 200px; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="../index.html">Popsicle<span>Software</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="fair_tips.html">Fair Tips</a></li>
+      <li><a href="wholistic.html" class="active">Wholistic</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- ── HERO ── -->
+    <section class="wh-hero">
+      <div class="wh-hero-inner">
+        <p class="wh-hero-eyebrow fade-up">iOS App</p>
+        <h1 class="fade-up fade-up-d1">Your recurring tasks,<br/><em>finally organised.</em></h1>
+        <p class="wh-hero-sub fade-up fade-up-d2">
+          Wholistic lets you build templates for recurring events, spin up
+          checklists in seconds, set smart alerts, and see everything laid
+          out in a clean calendar view.
+        </p>
+        <div class="wh-hero-ctas fade-up fade-up-d3">
+          <a class="btn-appstore" href="#">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+            </svg>
+            Download on the App Store
+          </a>
+        </div>
+      </div>
+
+      <!-- Screenshots row -->
+      <div class="wh-hero-screens fade-up fade-up-d3">
+        <div class="wh-phone">
+          <img src="../assets/wholistic/TemplateList-raw.PNG" alt="Wholistic template list" />
+        </div>
+        <div class="wh-phone center">
+          <img src="../assets/wholistic/WorkingList-raw.PNG" alt="Wholistic active checklist" />
+        </div>
+        <div class="wh-phone">
+          <img src="../assets/wholistic/Planner-raw.PNG" alt="Wholistic calendar planner" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Gradient fade from hero into content -->
+    <div class="wh-hero-fade"></div>
+
+    <!-- ── HOW IT WORKS ── -->
+    <section class="wh-how">
+      <div class="wh-how-inner">
+        <p class="section-label">How It Works</p>
+        <h2 class="section-title">From template to done — in moments</h2>
+        <p class="section-body">
+          Stop recreating the same checklist every time. Build it once as a template,
+          then launch it whenever you need it.
+        </p>
+
+        <div class="wh-steps">
+          <div class="wh-step">
+            <h4>Build a template</h4>
+            <p>Define all the tasks for a recurring event once — weekly review, travel prep, home maintenance, anything you do repeatedly.</p>
+          </div>
+          <div class="wh-step">
+            <h4>Launch a checklist</h4>
+            <p>Tap your template to generate a fresh, ready-to-use checklist for the occasion. Every item starts clean.</p>
+          </div>
+          <div class="wh-step">
+            <h4>Set smart alerts</h4>
+            <p>Attach reminders to individual items or the whole event so nothing slips through the cracks.</p>
+          </div>
+          <div class="wh-step">
+            <h4>See it in the calendar</h4>
+            <p>All your active checklists appear in a calendar view so you can plan ahead and track progress at a glance.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FEATURE SHOWCASE ── -->
+    <section class="wh-showcase" style="background: var(--card-bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+      <div class="wh-showcase-inner">
+
+        <div style="text-align:center; max-width:600px; margin: 0 auto 5rem;">
+          <p class="section-label">Features</p>
+          <h2 class="section-title">Checklist for recurring events</h2>
+        </div>
+
+        <!-- Feature 1 — Templates -->
+        <div class="wh-showcase-row">
+          <div class="wh-showcase-img">
+            <img src="../assets/wholistic/TemplateList-raw.PNG" alt="Template list screen" />
+          </div>
+          <div class="wh-showcase-text">
+            <p class="section-label">Feature 01</p>
+            <h3>Reusable templates for every occasion</h3>
+            <p>
+              Create a master template once and reuse it forever. Whether it's a
+              weekly house clean, a monthly budget review, or a pre-trip packing
+              routine — your tasks are always ready to go.
+            </p>
+          </div>
+        </div>
+
+        <!-- Feature 2 — Active checklists -->
+        <div class="wh-showcase-row reverse">
+          <div class="wh-showcase-img">
+            <img src="../assets/wholistic/WorkingList-raw.PNG" alt="Active checklist screen" />
+          </div>
+          <div class="wh-showcase-text">
+            <p class="section-label">Feature 02</p>
+            <h3>Clean, satisfying checklists</h3>
+            <p>
+              Each checklist is crisp and distraction-free. Check items off as you
+              go, track your overall progress, and feel the satisfaction of a
+              completed list.
+            </p>
+          </div>
+        </div>
+
+        <!-- Feature 3 — Alerts -->
+        <div class="wh-showcase-row">
+          <div class="wh-showcase-img">
+            <img src="../assets/wholistic/Alert-raw.PNG" alt="Alert setup screen" />
+          </div>
+          <div class="wh-showcase-text">
+            <p class="section-label">Feature 03</p>
+            <h3>Alerts that actually help</h3>
+            <p>
+              Set reminders at the event level or on individual tasks. Wholistic
+              surfaces the right notification at the right time — so you can focus
+              on doing, not on remembering.
+            </p>
+          </div>
+        </div>
+
+        <!-- Feature 4 — Calendar -->
+        <div class="wh-showcase-row reverse">
+          <div class="wh-showcase-img">
+            <img src="../assets/wholistic/Planner-raw.PNG" alt="Calendar planner screen" />
+          </div>
+          <div class="wh-showcase-text">
+            <p class="section-label">Feature 04</p>
+            <h3>See the whole picture in calendar view</h3>
+            <p>
+              Your active checklists are mapped onto a calendar so you always know
+              what's coming up, what's in progress, and what you've already
+              knocked out this week.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── FEATURES GRID ── -->
+    <section class="product-content">
+      <div class="product-content-inner">
+
+        <p class="section-label">Why Wholistic</p>
+        <h2 class="section-title">Built for the way you really work</h2>
+
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="icon">📋</div>
+            <h4>Template-powered</h4>
+            <p>Define your recurring tasks once and reuse them endlessly — no copy-pasting, no starting from scratch.</p>
+          </div>
+          <div class="feature-item">
+            <div class="icon">🔔</div>
+            <h4>Smart alerts</h4>
+            <p>Attach reminders to any item or event so the right nudge arrives exactly when you need it.</p>
+          </div>
+          <div class="feature-item">
+            <div class="icon">📅</div>
+            <h4>Calendar view</h4>
+            <p>A unified calendar gives you the full picture of upcoming, active, and completed checklists.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── FINAL CTA STRIP ── -->
+    <section class="wh-cta-strip">
+      <h2 class="fade-up">Stop reinventing your routine.</h2>
+      <p class="fade-up fade-up-d1">Wholistic is built for the tasks you do again and again — get it on the App Store.</p>
+      <a class="btn-appstore fade-up fade-up-d2" href="#">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:20px;height:20px;">
+          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+        </svg>
+        Download on the App Store
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>
+      &copy; <span id="yr"></span> PopsicleSoftware. All rights reserved.
+    </p>
+  </footer>
+
+  <script src="../js/nav.js"></script>
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>
